@@ -1,6 +1,7 @@
 #Source:https://blog.tanka.la/2020/03/29/write-convert-nested-json-data-to-csv-for-specific-subset-keysheaders/
 import json  # For JSON loading
 import csv  # For CSV dict writer
+import os
 
 
 def get_leaves(item, key=None, key_prefix=""):
@@ -33,8 +34,11 @@ def get_leaves(item, key=None, key_prefix=""):
     else:
         return {key_prefix: item}
 
+input = "database.json"
+output = "output.csv"
 
-with open("data.json") as f_input, open("output.csv", "w", newline="") as f_output:
+
+with open(os.path.join(os.path.dirname(__file__), "..","resources","data",input)) as f_input, open(os.path.join(os.path.dirname(__file__), "..","resources","data", output), "w", newline="") as f_output:
     json_data = json.load(f_input, strict=False)
     """'First parse all entries to get the unique fieldnames why because already we have file in RAM level and
     if we put each dictionary after parsing in list or some data structure it will crash your system due to memory constraint
