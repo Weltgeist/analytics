@@ -38,7 +38,7 @@ input = "database.json"
 output = "output.csv"
 
 
-with open(os.path.join(os.path.dirname(__file__), "..","resources","data",input)) as f_input, open(os.path.join(os.path.dirname(__file__), "..","resources","data", output), "w", newline="") as f_output:
+with open(os.path.join(os.path.dirname(__file__), "..","resources","data",input)) as f_input, open(os.path.join(os.path.dirname(__file__), "..","resources","data", output), "w", encoding="utf-8", newline="") as f_output:
     json_data = json.load(f_input, strict=False)
     """'First parse all entries to get the unique fieldnames why because already we have file in RAM level and
     if we put each dictionary after parsing in list or some data structure it will crash your system due to memory constraint
